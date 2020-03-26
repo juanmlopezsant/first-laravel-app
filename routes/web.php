@@ -19,10 +19,10 @@ Route::get('/', function () {
     return 'Hola dede inicio'; 
 });
 
-// Para ir a la página /contacto en el UR
-Route::get('/contacto', function(){
+// Para ir a la página /contacto en el URL; "name" nos sirve para darle el nombre a la ruta, para así no cambiar uno por uno
+Route::get('/contactame', function(){
     return 'Hola desde contacto';
-});
+}) ->name('contactos');
 
 // Para mandar parámetros obligatorio por la URL 
 Route::get('saludo/{nombre}', function($nombre){
@@ -38,3 +38,14 @@ Route::get('saludo/{nombre}', function($nombre){
 Route::get('saludo/{nombre?}', function($nombre = "Invitado"){
     return 'Saludo ' .$nombre;
 });
+
+// Rutas con nombre; escribimos el nombre de la ruta que pusimos cuando la definimos con "name" para hacer referencia al nombre y no a la URL 
+Route::get('/', function(){
+    echo "<a href = '". route('contactos') .  "'>Contactos 1</a><br>";
+    echo "<a href = '". route('contactos') .  "'>Contactos 2</a><br>";
+    echo "<a href = '". route('contactos') .  "'>Contactos 3</a><br>";
+    echo "<a href = '". route('contactos') .  "'>Contactos 4</a><br>";
+    echo "<a href = '". route('contactos') .  "'>Contactos 5</a><br>";
+});
+
+
