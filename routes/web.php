@@ -13,6 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Para ir a la página de inicio 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return 'Hola dede inicio'; 
+});
+
+// Para ir a la página /contacto en el UR
+Route::get('/contacto', function(){
+    return 'Hola desde contacto';
+});
+
+// Para mandar parámetros obligatorio por la URL 
+Route::get('saludo/{nombre}', function($nombre){
+    return 'Saludos ' .$nombre; 
+});
+
+// Para mandar parámetros obligatorio por la URL 
+Route::get('saludo/{nombre}', function($nombre){
+    return 'Saludo ' .$nombre; 
+});
+
+// Para mandar parámetros opcionales por la URL, si no se pasa nada se coloca el nombre de "Invitado"
+Route::get('saludo/{nombre?}', function($nombre = "Invitado"){
+    return 'Saludo ' .$nombre;
 });
