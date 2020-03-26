@@ -1,10 +1,21 @@
-<!DOCTYPE html>
- <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Portfolio</title>
-    </head>
-    <body>
-        <h1>Portfolio</h1>
-    </body>
- </html>
+@extends('layout')
+
+@section('title','Portfolio')
+
+@section('content')
+    <h1>Portfolio</h1>
+
+    <ul>  
+        @forelse($portfolio as $portfolioItem)
+            <li>{{ $portfolioItem['title'] }}</li>
+        
+        @empty 
+            <li>No hay proyectos disponibles</li>
+
+        @endforelse 
+     
+    </ul>
+
+
+
+@endsection
