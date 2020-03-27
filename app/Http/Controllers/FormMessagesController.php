@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\MessageReceived; 
+use Illuminate\Support\Facades\Mail; 
 
 class FormMessagesController extends Controller
 {
@@ -10,18 +12,20 @@ class FormMessagesController extends Controller
     public function store(Request $request){ 
 
         // Para validar el request, se coloca el nombre de la propiedad
-        request()->validate([
+        $msg = request()->validate([
             'nombre' => 'required',
             'email' => 'required|email',
             'asunto' => 'required',
             'contenido' => 'required'
         ]);
 
-        // return request('email'); 
-        // return $request; 
-        // return 'Formulario procesado';
-        // return $request->get('name');
-        
-        return 'Datos validados'; 
+        // Enviamos el email; pasamos la variable $msg y debemos recibirla en MessageReceived.php
+        Mail::to('blueskylander777@gmail.com')->queue(new MessageReceived($msg)); 
+            
+       // Imprimmos la informacion que se acaba de enviar en la pantalla
+        // return new MessageReceived($msg);         
+
+
+        return 'Mensaje enviado'; 
     }
 }
