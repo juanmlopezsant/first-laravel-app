@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Project; 
+ 
 
 class PortFolioController extends Controller
 {
@@ -13,15 +15,17 @@ class PortFolioController extends Controller
      */
     public function index()
     {
-        $portfolio = [
-            ['title' => 'Proyecto 1'],
-            ['title' => 'Proyecto 2'],
-            ['title' => 'Proyecto 3'],
-            ['title' => 'Proyecto 4']
-        ]; 
+        // Obtener los proyectos desde la base de datos
+        // $portfolio = Project::get(); 
 
+        // Mostrar sólo algunos por página
+        // $projects = Project::latest()->paginate(); 
+
+     
         // Regresamos la vista 
-        return view('portfolio', compact('portfolio')); 
+        return view('portfolio', [
+            'projects' => Project::latest()->paginate() 
+        ]); 
     
     }
 }
