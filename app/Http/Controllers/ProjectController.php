@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Project; 
  
 
-class PortFolioController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,9 +23,20 @@ class PortFolioController extends Controller
 
      
         // Regresamos la vista 
-        return view('portfolio', [
+        return view('projects.index', [
             'projects' => Project::latest()->paginate() 
         ]); 
     
+    }
+
+    // Recibimos el id que estamos mandando en web.php
+    public function show($id){
+        
+
+        // Regresamos la vista correspondiente y mandamos el id correspondiente
+        return view('projects.show', [
+            'project' => Project::findOrFail($id)
+        ]);
+
     }
 }
