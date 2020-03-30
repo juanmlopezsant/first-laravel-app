@@ -54,13 +54,21 @@ class ProjectController extends Controller
         // $description = request('description'); 
 
         // Guardamos los campos en la BD
-        Project::create([
+        /*Project::create([
             'title' => request('title'),
             'description' => request('description')
-        ]);
+        ]);*/
 
         // Podemos hacer lo mismo de arriba con (sólo si los campos se llaman igual aquí y en la BD): 
         // Project::create(request()->all()); 
+
+        // Mandamos la request sólo con campos esepcíficos para evitar asignación masiva de datos
+        $fields = request()->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
+        Project::create($fields);
 
         return redirect()->route('projects.index');
 
