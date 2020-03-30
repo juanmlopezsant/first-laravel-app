@@ -82,6 +82,16 @@ class ProjectController extends Controller
         return redirect()->route('projects.show', $project); 
     }
 
+    // Para eliminar un proyecto
+    public function destroy(Project $project){
+
+        $project->delete(); 
+
+        return redirect()->route('projects.index'); 
+
+        
+    }
+
 
 
 }

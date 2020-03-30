@@ -26,3 +26,6 @@ Route::post('/portfolio','ProjectController@store')->name('projects.store');
 
 // Para mostrar los proyectos con información a detalle; mandamos el id y lo debemos recibir en PortFolioController.php
 Route::get('/portfolio/{project}', 'ProjectController@show')->name('projects.show');
+
+// Para eliminar un proyecto
+Route::delete('/portfolio/{project}', 'ProjectController@destroy')->name('projects.destroy');
