@@ -7,13 +7,7 @@
 @section('content')
     <h1>Editar Proyecto</h1>
 
-    @if($errors->any())
-        <ul>
-            @forearch($errors->all() as $error)
-            <li>{{ $error }}}</li>
-            @endforeach
-        </ul>
-    @endif
+    @include('partials.validation-errors')
         
     <form method="POST" action="{{ route('projects.update', $project) }}">
         <!-- Para proteger de ataques XSS -->

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project; 
-use Illuminate\Http\Request\SaveProjectRequest;
- 
 
 class ProjectController extends Controller
 {
@@ -42,17 +40,23 @@ class ProjectController extends Controller
 
     public function create(){
         
-        return view('projects.create');
+        // Cuando hacemos un proyecto mandamos un proyecto vacio para poder usarlo como valor por defecto
+        return view('projects.create',[
+            'project' => new Project 
+        ]);
 
     }
 
     // Para guardar el proyecto en la BD y devolver una respuesta, esto se ejecuta sólo al crear por primera vez un proyecto; inyectamos CreateProjectRequest para tener acceso a las reglas de validación para el permiso sobre las acciones de usuarios
-    public function store(SaveProjectRequest $request){
+    public function store(){
     
         // Mandamos la request sólo con campos específicos para evitar asignación masiva de datos
-       
-        Project::create($request->validated());
+        $fields = request()->validate([
+            'title' => request('title'),
+            'description' => request('description')
+        ]);
 
+        Project::create($fields); 
         return redirect()->route('projects.index');
 
     }
@@ -67,10 +71,13 @@ class ProjectController extends Controller
     }
 
     // Para mandar el proyecto actualizado
-    public function update(Project $project, SaveProjectRequest $request){
+    public function update(Project $project){
 
         // Actualizamos el proyecto 
-        $project->update($request->validated());
+       $project->update([ 
+            'title' => request('title'),
+            'description' => request('description')
+       ]);
 
         // Mandamos un redirect y como argumento el proyecto actualizado
         return redirect()->route('projects.show', $project); 

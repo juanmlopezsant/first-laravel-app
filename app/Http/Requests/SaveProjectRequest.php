@@ -11,9 +11,9 @@ class SaveProjectRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize() // Determina si el usuario que envia un formulario por ejemplo, está autorizado
+    public function authorize()// Determina si el usuario que envia un formulario por ejemplo, está autorizado  
     {
-        return true;
+        return false;
     }
 
     /**
@@ -30,7 +30,7 @@ class SaveProjectRequest extends FormRequest
     }
 
     // Función para mostrar errores de validación de los campos en el formulario
-    public function messages(){
+    public function messages(){ 
         return [
             'title.required' => 'El proyecto debe de tener un título'
         ];
