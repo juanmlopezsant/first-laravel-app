@@ -33,3 +33,7 @@ Route::delete('/portfolio/{project}', 'ProjectController@destroy')->name('projec
 
 // Utilizando Route::resource para manipular las 7 acciones REST definidas arriba
 // Route::resource('portfolio', 'ProjectController')->parameters(['portfolio' => 'project'])->names('projects');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
