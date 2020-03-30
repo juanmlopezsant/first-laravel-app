@@ -30,12 +30,11 @@ class ProjectController extends Controller
     }
 
     // Recibimos el id que estamos mandando en web.php
-    public function show($id){
+    public function show(Project $project){
         
-
         // Regresamos la vista correspondiente y mandamos el id correspondiente
         return view('projects.show', [
-            'project' => Project::findOrFail($id)
+            'project' => $project
         ]);
 
     }
