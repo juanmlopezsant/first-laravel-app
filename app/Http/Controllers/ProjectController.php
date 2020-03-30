@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project; 
-use Illuminate\Http\Request\CreateProjectRequest;
+use Illuminate\Http\Request\SaveProjectRequest;
  
 
 class ProjectController extends Controller
@@ -46,8 +46,8 @@ class ProjectController extends Controller
 
     }
 
-    // Inyectamos CreateProjectRequest para tener acceso a las reglas de validación para el permiso sobre las acciones de usuarios
-    public function store(CreateProjectRequest $request){
+    // Para guardar el proyecto en la BD y devolver una respuesta, esto se ejecuta sólo al crear por primera vez un proyecto; inyectamos CreateProjectRequest para tener acceso a las reglas de validación para el permiso sobre las acciones de usuarios
+    public function store(SaveProjectRequest $request){
     
         // Mandamos la request sólo con campos específicos para evitar asignación masiva de datos
        
@@ -56,5 +56,26 @@ class ProjectController extends Controller
         return redirect()->route('projects.index');
 
     }
+
+    // Para editar un proyecto en específico
+    public function edit(Project $project){
+
+        // Regresamos la vista y le pasamos el proyecto a la misma 
+        return view('projects.edit',[
+            'project' => $project
+        ]);
+    }
+
+    // Para mandar el proyecto actualizado
+    public function update(Project $project, SaveProjectRequest $request){
+
+        // Actualizamos el proyecto 
+        $project->update($request->validated());
+
+        // Mandamos un redirect y como argumento el proyecto actualizado
+        return redirect()->route('projects.show', $project); 
+    }
+
+
 
 }
