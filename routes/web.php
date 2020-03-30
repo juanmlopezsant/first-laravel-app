@@ -29,3 +29,7 @@ Route::get('/portfolio/{project}', 'ProjectController@show')->name('projects.sho
 
 // Para eliminar un proyecto
 Route::delete('/portfolio/{project}', 'ProjectController@destroy')->name('projects.destroy');
+
+
+// Utilizando Route::resource para manipular las 7 acciones REST definidas arriba
+// Route::resource('portfolio', 'ProjectController')->parameters(['portfolio' => 'project'])->names('projects');
