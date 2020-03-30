@@ -12,6 +12,12 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // Para que el usuario deba de acceder al todos los métodos menos para ver eñ index y show, tenga que estar autenticado 
+    public function __construct(){
+        $this->middleware('auth')->except('index', 'show');
+    }
+
     public function index()
     {
         // Obtener los proyectos desde la base de datos

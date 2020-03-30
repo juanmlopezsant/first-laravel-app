@@ -4,8 +4,11 @@
 
 @section('content')
     <h1>Proyectos</h1>
-    <a href="{{ route('projects.create') }}">Crear proyecto</a>
 
+    <!-- Mostramos el botón para crear un proyecto nuevo sólo si el usuario está autenticado -->
+    @auth
+        <a href="{{ route('projects.create') }}">Crear proyecto</a>
+    @endauth
      
 
     <ul>  
