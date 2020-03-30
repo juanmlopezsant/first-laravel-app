@@ -61,6 +61,8 @@
                                         {{ __('Logout') }}
                                     </a>
 
+
+                                    <!-- Formulario para cerrar sesión-->
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

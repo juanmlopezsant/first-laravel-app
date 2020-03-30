@@ -6,6 +6,7 @@ use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
+// Redirecciona si estamos autenticados 
 class RedirectIfAuthenticated
 {
     /**
@@ -19,7 +20,8 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+            //return redirect(RouteServiceProvider::HOME);
+            return redirect('/');
         }
 
         return $next($request);
