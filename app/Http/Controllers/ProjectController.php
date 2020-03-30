@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project; 
+use Illuminate\Http\Request\CreateProjectRequest;
  
 
 class ProjectController extends Controller
@@ -45,34 +46,15 @@ class ProjectController extends Controller
 
     }
 
-    public function store(){
-        
-        // Imprimimos la request 
-        // return request();
-
-        // $title = request('title');
-        // $description = request('description'); 
-
-        // Guardamos los campos en la BD
-        /*Project::create([
-            'title' => request('title'),
-            'description' => request('description')
-        ]);*/
-
-        // Podemos hacer lo mismo de arriba con (sólo si los campos se llaman igual aquí y en la BD): 
-        // Project::create(request()->all()); 
-
-        // Mandamos la request sólo con campos esepcíficos para evitar asignación masiva de datos
-        $fields = request()->validate([
-            'title' => 'required',
-            'description' => 'required'
-        ]);
-
-        Project::create($fields);
+    // Inyectamos CreateProjectRequest para tener acceso a las reglas de validación para el permiso sobre las acciones de usuarios
+    public function store(CreateProjectRequest $request){
+    
+        // Mandamos la request sólo con campos específicos para evitar asignación masiva de datos
+       
+        Project::create($request->validated());
 
         return redirect()->route('projects.index');
 
     }
-
 
 }

@@ -23,7 +23,7 @@ class FormMessagesController extends Controller
         Mail::to('blueskylander777@gmail.com')->queue(new MessageReceived($msg)); 
             
        // Imprimmos la informacion que se acaba de enviar en la pantalla
-        // return new MessageReceived($msg);         
+       // return new MessageReceived($msg);         
 
 
         return 'Mensaje enviado'; 

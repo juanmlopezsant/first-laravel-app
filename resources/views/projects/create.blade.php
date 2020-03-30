@@ -8,7 +8,7 @@
     <h1>Crear Proyecto</h1>
 
     <form method="POST" action="{{ route('projects.store') }}">
-        <!-- Para proteger de ataques -->
+        <!-- Para proteger de ataques XSS -->
         @csrf
 
         <label for="title">Título: 
