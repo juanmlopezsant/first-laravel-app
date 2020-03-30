@@ -10,20 +10,13 @@
     @include('partials.validation-errors')
         
     <form method="POST" action="{{ route('projects.update', $project) }}">
-        <!-- Para proteger de ataques XSS -->
-        @csrf
 
         <!-- Esto nos genera un campo oculto de tipo hidden, 
         para así poder hacer uso del método PATCH-->
         @method('PATCH') 
 
-        <label for="title">Título: 
-        <input type="text" name="title" value="{{ old('title',$project->title) }}">
-        </label> <br>
-
-        <label for="description">Descripción: 
-            <textarea name="description">{{ old('description',$project->description) }}</textarea>
-        </label> <br>
+        <!-- Parte que es igual en los formularios de crear y actualziar-->
+        @include('projects._form', ['btnText' => 'Actualizar'])
 
         <button>Actualizar</button>
 

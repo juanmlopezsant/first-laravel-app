@@ -10,18 +10,11 @@
     @include('partials.validation-errors')
 
     <form method="POST" action="{{ route('projects.store') }}">
-        <!-- Para proteger de ataques XSS -->
-        @csrf
+    
+        <!-- Parte que es igual en los formularios de crear y actualziar-->
+        @include('projects._form', ['btnText' => 'Guardar'])
 
-        <label for="title">Título: 
-            <input type="text" name="title" value="{{ old('title',$project->title) }}">
-        </label> <br>
-
-        <label for="description">Descripción: 
-            <textarea name="description">{{ old('description',$project->description) }}</textarea>
-        </label> <br>
-
-        <button>Guardar</button>
+        
 
     </form>
 
