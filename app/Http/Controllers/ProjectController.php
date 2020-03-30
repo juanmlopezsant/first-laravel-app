@@ -51,12 +51,11 @@ class ProjectController extends Controller
     public function store(){
     
         // Mandamos la request sólo con campos específicos para evitar asignación masiva de datos
-        $fields = request()->validate([
+        Project::create([
             'title' => request('title'),
             'description' => request('description')
         ]);
 
-        Project::create($fields); 
         return redirect()->route('projects.index');
 
     }

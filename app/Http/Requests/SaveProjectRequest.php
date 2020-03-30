@@ -25,7 +25,7 @@ class SaveProjectRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'descrption' => 'required'
+            'description' => 'required'
         ];
     }
 
