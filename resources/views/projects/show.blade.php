@@ -8,6 +8,8 @@
     <!--Ruta para editar un proyecto, le pasamos como segundo parámetro el proyecto-->
     <a href="{{ route('projects.edit', $project) }}">Editar Proyecto</a>
 
+    
+
     <!-- Para eliminar el formulario -->
     <form method="POST" action="{{ route('projects.destroy', $project) }}">
         @csrf 

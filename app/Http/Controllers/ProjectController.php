@@ -56,7 +56,7 @@ class ProjectController extends Controller
             'description' => request('description')
         ]);
 
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('status', 'Proyecto creado con éxito');
 
     }
 
@@ -79,7 +79,7 @@ class ProjectController extends Controller
        ]);
 
         // Mandamos un redirect y como argumento el proyecto actualizado
-        return redirect()->route('projects.show', $project); 
+        return redirect()->route('projects.show', $project)->with('status', 'Proyecto actualizado con éxito'); 
     }
 
     // Para eliminar un proyecto
@@ -87,7 +87,7 @@ class ProjectController extends Controller
 
         $project->delete(); 
 
-        return redirect()->route('projects.index'); 
+        return redirect()->route('projects.index')->with('status', 'Proyecto eliminado con éxito');; 
 
         
     }

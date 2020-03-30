@@ -6,6 +6,8 @@
     <h1>Proyectos</h1>
     <a href="{{ route('projects.create') }}">Crear proyecto</a>
 
+     
+
     <ul>  
         @forelse($projects as $project)
         <!-- Mostramos en la vista el detalle de cada proyecto desde la BD; el argumento $project es para saber el id-->

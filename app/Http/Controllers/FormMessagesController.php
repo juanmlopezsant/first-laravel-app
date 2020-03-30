@@ -25,7 +25,7 @@ class FormMessagesController extends Controller
        // Imprimmos la informacion que se acaba de enviar en la pantalla
        // return new MessageReceived($msg);         
 
-
-        return 'Mensaje enviado'; 
+        // Para cuando se manda el mensaje, que nos regrese a la página inmediata anterior, el mensaje dura solo una sesión y le mandamos la llave y el valor
+        return back()->with('status', 'Recibimos tu mensaje, nos pondremos en contacto contigo pronto');
     }
 }

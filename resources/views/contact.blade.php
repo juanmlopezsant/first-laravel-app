@@ -4,7 +4,9 @@
 
 @section('content')
     <h1>Contact</h1>
-<form method="POST" action="{{ route('formmessages.store') }}">
+
+      
+    <form method="POST" action="{{ route('formmessages.store') }}">
 
         <!-- Para protección ante ataques, agrega un campo token oculto -->
         @csrf 
@@ -23,13 +25,11 @@
         value="{{ old('asunto') }}"><br>
         {{ $errors->first('asunto') }} <br>
         
-
         <textarea placeholder="Escribe tu mensaje" 
         name="contenido">{{ old('contenido') }}</textarea><br>
         {{ $errors->first('contenido') }} <br>
 
         <button>Enviar</button><br>
 
-</form>
-
+        </form>  
 @endsection

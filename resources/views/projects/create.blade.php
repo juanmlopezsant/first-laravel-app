@@ -7,7 +7,10 @@
 @section('content')
     <h1>Crear Proyecto</h1>
 
-    @include('partials.validation-errors')
+    <!-- Mostrar mensaje de creado con éxito -->
+    @include('partials.session-status')
+
+    
 
     <form method="POST" action="{{ route('projects.store') }}">
     
